@@ -1,0 +1,22 @@
+[project]
+name = "preferencia-ia"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "CahuVictor@",email = "kahuvictor@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas (==2.0.3)",
+    "surprise (>=0.1,<0.2)",
+    "numpy (==1.24.3)"
+]
+
+[tool.poetry]
+packages = [{include = "pos", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
