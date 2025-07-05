@@ -88,7 +88,7 @@ Ative o ambiente virtual via `poetry shell`.
 No main.py, selecione qual projeto será usado, alterando a variável project_number para 1, para rodar com os dados antigos e para 2 para rodar com os novos dados do kagle. Os dados do kagle devem estar na pasta data com os nomes originais.
 
 ```bash
-python src/pos/main.py --user_id 1 --top_n 5
+python src/main.py --user_id 1 --top_n 5
 ```
 
 Você verá na tela uma lista de livros recomendados para o usuário especificado, além da criação de um arquivo `.csv` com as recomendações.
