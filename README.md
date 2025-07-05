@@ -15,13 +15,15 @@ colaborativa** com **SVD** (biblioteca [Surprise]).
 
 ## 📌 Sumário
 
-- [📚 Sobre o Projeto](#-sobre-o-projeto)
-- [🚀 Objetivo](#-objetivo)
-- [🛠️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
-- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
-- [🐍 Ambiente Python com Poetry](#-ambiente-python-com-poetry)
-- [▶️ Execução do Projeto](#️-execução-do-projeto)
-- [🧩 Documentação Adicional](#-documentação-adicional)
+- [📚 Sistema de Recomendação de Livros com SVD](#-sistema-de-recomendação-de-livros-com-svd)
+  - [📌 Sumário](#-sumário)
+  - [📚 Sobre o Projeto](#-sobre-o-projeto)
+  - [🚀 Objetivo](#-objetivo)
+  - [🛠️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
+  - [📂 Estrutura do Projeto](#-estrutura-do-projeto)
+  - [🐍 Ambiente Python com Poetry](#-ambiente-python-com-poetry)
+  - [▶️ Execução do Projeto](#️-execução-do-projeto)
+  - [📄 Documentação Adicional](#-documentação-adicional)
 
 ---
 
@@ -59,13 +61,17 @@ pos/
 │   ├── CONFIGURAR_VSCODE_POWERSHELL.md # Como configurar o terminal do VS Code
 │   └── EXPLICACAO_PROJETO.md           # Explicação detalhada do funcionamento do projeto e código
 ├── src
-│   ├── __init__.py
-│   └── recomendador.py                 # Script principal com o modelo SVD e recomendações
+│   └── pos
+│       ├── __init__.py
+│       ├── dados.py              # Carregamento e pré-processamento de dados
+│       ├── modelo.py             # Treinamento e avaliação do modelo SVD
+│       ├── recomendador.py       # Função de recomendação de livros
+│       └── main.py               # Script principal para execução via terminal
 ├── tests
 │   └── __init__.py
-├── pyproject.toml                      # Arquivo de configuração do Poetry com as dependências
-├── poetry.lock                         # Lockfile gerado automaticamente com versões exatas
-└── README.md                           # Este arquivo
+├── pyproject.toml                # Arquivo de configuração do Poetry com as dependências
+├── poetry.lock                   # Lockfile gerado automaticamente com versões exatas
+└── README.md                     # Este arquivo
 ```
 
 ---
@@ -78,20 +84,22 @@ O projeto utiliza o Poetry. Para instruções completas de instalação e ativa�
 
 ## ▶️ Execução do Projeto
 
-Com o ambiente ativado via `poetry shell`, rode o script principal:
+Ative o ambiente virtual via `poetry shell`.
+
+No main.py, selecione qual projeto será usado, alterando a variável project_number para 1, para rodar com os dados antigos e para 2 para rodar com os novos dados do kagle. Os dados do kagle devem estar na pasta data com os nomes originais.
 
 ```bash
-python recomendador.py
+python src/pos/main.py --user_id 1 --top_n 5
 ```
 
-Você verá na tela uma lista de livros recomendados para o usuário especificado.
+Você verá na tela uma lista de livros recomendados para o usuário especificado, além da criação de um arquivo `.csv` com as recomendações.
 
 ---
 
-## 🧩 Documentação Adicional
+## 📄 Documentação Adicional
 
-- 📘 [Explicação detalhada do projeto e do código](./docs/EXPLICACAO_PROJETO.md)
-- 🖥️ [Como configurar o VS Code para usar PowerShell](./docs/CONFIGURAR_VSCODE_POWERSHELL.md)
+* [Explicação detalhada do projeto e do código](./docs/EXPLICACAO_PROJETO.md)
+* [Como configurar o VS Code para usar PowerShell](./docs/CONFIGURAR_VSCODE_POWERSHELL.md)
 
 ---
 
