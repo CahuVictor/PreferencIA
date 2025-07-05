@@ -1,5 +1,4 @@
 # src\pos\recomendador.py
-import argparse
 import logging
 import pandas as pd
 

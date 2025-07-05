@@ -61,17 +61,16 @@ pos/
 │   ├── CONFIGURAR_VSCODE_POWERSHELL.md # Como configurar o terminal do VS Code
 │   └── EXPLICACAO_PROJETO.md           # Explicação detalhada do funcionamento do projeto e código
 ├── src
-│   └── pos
-│       ├── __init__.py
-│       ├── dados.py              # Carregamento e pré-processamento de dados
-│       ├── modelo.py             # Treinamento e avaliação do modelo SVD
-│       ├── recomendador.py       # Função de recomendação de livros
-│       └── main.py               # Script principal para execução via terminal
+│   ├── __init__.py
+│   ├── dados.py                        # Carregamento e pré-processamento de dados
+│   ├── modelo.py                       # Treinamento e avaliação do modelo SVD
+│   ├── recomendador.py                 # Função de recomendação de livros
+│   └── main.py                         # Script principal para execução via terminal
 ├── tests
 │   └── __init__.py
-├── pyproject.toml                # Arquivo de configuração do Poetry com as dependências
-├── poetry.lock                   # Lockfile gerado automaticamente com versões exatas
-└── README.md                     # Este arquivo
+├── pyproject.toml                      # Arquivo de configuração do Poetry com as dependências
+├── poetry.lock                         # Lockfile gerado automaticamente com versões exatas
+└── README.md                           # Este arquivo
 ```
 
 ---
