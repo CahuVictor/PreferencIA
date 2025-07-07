@@ -1,0 +1,23 @@
+# configs/pipeline.yaml
+data:
+  ratings:         https://raw.githubusercontent.com/.../ratings.csv
+  items:           https://raw.githubusercontent.com/.../books.csv
+  users:           https://raw.githubusercontent.com/.../users.csv
+  separator:       ;
+  encoding:        latin-1
+  quotechar:       '"'
+  columns_ratings: "User-ID, ISBN, Book-Rating"
+  columns_items:   "ISBN, Book-Title"
+  columns_users:   "User-ID, User-Name"
+  result:          recomend_books.csv
+
+filter:
+  min_user_ratings: 50
+
+train:
+  algorithm: SVD
+  factors:  100
+
+recommend:
+  topn:     5
+  user:     42

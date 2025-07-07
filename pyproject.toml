@@ -1,21 +1,34 @@
-[project]
+# [project]
+[tool.poetry]
 name = "preferencia-ia"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "CahuVictor@",email = "kahuvictor@gmail.com"}
-]
+description = "Recommender system based on collaborative filtering"
+authors = ["CahuVictor <kahuvictor@gmail.com>"]
+
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "pandas (==2.0.3)",
-    "surprise (>=0.1,<0.2)",
-    "numpy (==1.24.3)"
-]
 
-[tool.poetry]
-packages = [{include = "pos", from = "src"}]
+# indica onde está o pacote
+# [tool.poetry]
+packages = [{ include = "preferencia", from = "src" }]
 
+# requires-python = ">=3.11"
+# dependencies = [
+#     "pandas (==2.0.3)",
+#     "surprise (>=0.1,<0.2)",
+#     "numpy (==1.24.3)"
+# ]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "2.0.3"
+numpy = "1.24.3"
+scikit-surprise = "^1.1.4"
+typer = "^0.9.0"          # CLI
+click = "^8.1.7"          # força versão compatível
+pyyaml = "^6.0"           # ler o YAML
+
+[tool.poetry.scripts]
+preferencia = "preferencia.cli:cli"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

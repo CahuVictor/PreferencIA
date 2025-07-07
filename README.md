@@ -41,6 +41,18 @@ Este sistema de recomendação oferece sugestões personalizadas de livros para 
 
 ---
 
+## ✨ Principais recursos
+
+- **Pipeline completo**: leitura do dataset, pré-processamento, treino, avaliação
+  (RMSE) e geração de top-N recomendações.
+- **Modelo base SVD** facilmente trocável por outras abordagens (KNN, ALS,
+  implícitos, híbridos).
+- **Filtros prontos** para descartar usuários/itens com poucas avaliações.
+- **Relatórios** simples em CSV para métricas e recomendações.
+- **Código limpo** focado em didática, pronto para forks e experimentos.
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Python 3.11**
@@ -48,14 +60,17 @@ Este sistema de recomendação oferece sugestões personalizadas de livros para 
 - **Pandas** para manipulação de dados
 - **NumPy / SciPy** para computação científica
 - **scikit-learn** 
-- [Surprise](http://surpriselib.com)   
+- [Surprise](http://surpriselib.com)
+- (Futuro) pre-commit (lint & format)
 
 ---
 
 ## 📂 Estrutura do Projeto
 
 ```
-pos/
+preferencia/
+├── data/            # datasets de entrada
+├── outputs/         # métricas e recomendações geradas
 ├── docs
 │   ├── AMBIENTE_POETRY.md              # Guia completo de instalação do ambiente virtual
 │   ├── CONFIGURAR_VSCODE_POWERSHELL.md # Como configurar o terminal do VS Code
@@ -75,23 +90,63 @@ pos/
 
 ---
 
-## 🐍 Ambiente Python com Poetry
+## ▶️ Execução do Projeto
+
+1. **Clone e instale dependências**
+
+```bash
+   git clone https://github.com/CahuVictor/PreferencIA.git
+   poetry install
+```
+
+### 🐍 Ambiente Python com Poetry
 
 O projeto utiliza o Poetry. Para instruções completas de instalação e ativação do ambiente, consulte o arquivo [`AMBIENTE_POETRY.md`](./docs/AMBIENTE_POETRY.md).
 
----
-
-## ▶️ Execução do Projeto
+2. **Ative o ambiente Virtual**
 
 Ative o ambiente virtual via `poetry shell`.
 
-No main.py, selecione qual projeto será usado, alterando a variável project_number para 1, para rodar com os dados antigos e para 2 para rodar com os novos dados do kagle. Os dados do kagle devem estar na pasta data com os nomes originais.
+3. **Selecione como será o upload dos dados**
+
+No `main.py`, existe uma variável chamada de `project_number` que define qual será o projeto utilizado, é influenciado pela forma como o sistema recebe os dados e a estrutura dos dados, atualmente no sistema tem as seguintes formas:
+
+* **Upload via API**: Quando alterada a variável project_number para 1, é esperado o dado das URL `https://raw.githubusercontent.com/zygmuntz/goodbooks-10k/master/`, os dados da API precisam pouco pré-processamento para gerar o dataset para treinar o modelo.
+* **Upload via pasta \data**: Quando alterada a variável project_number para 2, é esperado os arquivos `BX-Book-Ratings.csv` e `BX-Books.csv` na pasta `/data`, e estes dados precisam de várias etapas de pré-processamento para gerar o dataset para treinar o modelo.
+
+4. **Execute a aplicação**
 
 ```bash
 python src/main.py --user_id 1 --top_n 5
 ```
 
+5. **Coletando os resultados**
+
 Você verá na tela uma lista de livros recomendados para o usuário especificado, além da criação de um arquivo `.csv` com as recomendações.
+
+---
+
+## Meta
+
+Evoluir o projeto para que a aplicação seja uma chamada dessa forma
+
+```bash
+poetry run python src/main.py --ratings data/ratings.csv \
+                              --min-user-ratings 50 \
+                              --topn 5 \
+                              --user 42
+```
+
+O processamento dos dados para gerar `ratings.csv` não deveria ser escopo dessa API
+
+Uma alternativa seria algo assim
+
+```bash
+poetry run python src/main.py --ratings funcao_Aux(data/ratings.csv) \
+                              --min-user-ratings 50 \
+                              --topn 5 \
+                              --user 42
+```
 
 ---
 
@@ -103,3 +158,28 @@ Você verá na tela uma lista de livros recomendados para o usuário especificad
 ---
 
 Mantenha seu ambiente sempre sincronizado com `poetry install` caso novas dependências sejam adicionadas.
+
+---
+
+## 🗺️ Roadmap
+
+* Atualizar API para ser menos dependente dos dados csv
+* Otimização de hiperparâmetros via RandomizedSearchCV
+* Métricas offline adicionais (MAP, NDCG, cobertura, novidade)
+* API REST com FastAPI para servir recomendações em tempo real
+* Dashboard em Streamlit para exploração interativa das sugestões
+* Suporte a datasets implícitos (feedback positivo/negativo)
+
+---
+
+## 🤝 Contribuindo
+
+Pull requests são muito bem-vindos! Se quiser reportar bugs ou sugerir funcionalidades, abra uma issue.
+
+* Fork o repositório
+* Crie uma branch (git checkout -b feature/minha-melhor-melhor)
+* Commit suas alterações (git commit -m 'feat: minha melhoria')
+* Faça push (git push origin feature/minha-melhor-melhor)
+* Abra um Pull Request
+
+---
